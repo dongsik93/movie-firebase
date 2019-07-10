@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/12d92dde75.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- mdi -->
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css">
     <!-- google font -->
@@ -221,7 +221,7 @@
                                                                 class="headline grey lighten-2"
                                                                 primary-title
                                                             >
-                                                                회원가입 완료 !! 로그인을 해주세요
+                                                                로그인을 원하시면 ehdtlr9376@naver.com으로 메일 보내주세요
                                                             </v-card-title>
                                                             <v-card-text style="font-size:20px;">
                                                                 You are now our memeber
@@ -297,7 +297,7 @@
                                                 <v-card
                                                 class="elevation-1"
                                                 width="344" style="margin-top:20px;">
-                                                <v-img :aspect-ratio="10/16" v-bind:src="movie.image_url"></v-img>
+                                                <v-img :aspect-ratio="9/15" v-bind:src="movie.image_url"></v-img>
                                                     <v-card-title>
                                                         <div>
                                                             <span style="font-size:30px">{{movie.movieNm}}</span>
@@ -726,13 +726,13 @@
                 signupUsername:'',
                 signupPassword:'',
                 signupEmail:'',
-                loginUsername:'data',
-                loginPassword:'1',
-                loginEmail:'data@naver.com',
+                loginUsername:'',
+                loginPassword:'',
+                loginEmail:'',
                 // 배포용
-                // serverUrl: "https://www.dongsik.tk",
+                serverUrl: "https://www.dongsik.tk",
                 // test용
-                serverUrl: "http://127.0.0.1:8000",
+                // serverUrl: "http://out-project-dev.ap-northeast-2.elasticbeanstalk.com",
                 drawer: null,
                 rules:{
                     // 회원가입 검증
@@ -795,7 +795,7 @@
                         .then(res => {
                             if (res.status === 200) {
                                 // 성공적으로 로그아웃이 될 경우
-                                location.href=`"${this.serverUrl}"`
+                                location.href="file:///C:/Users/student/Desktop/project/project/index.html"
                             }
                         })
                         .catch(e => {
@@ -813,12 +813,15 @@
                     axios.post(`${this.serverUrl}${loginPath}`, { "username":username,"email":email, "password":password})
                         .then(res => {
                             if (res.status === 200) {
+                                console.log(res)
                                 this.token = res.data.token
                                 console.log(this.token)
-
+                                const space = ' '
+                                // 성공적으로 로그인 되었을 경우
+                                // dataGet()
                                 axios.get(`${this.serverUrl}/api/v1/movies`,{'headers':{'Authorization':`JWT ${this.token}`}})
                                     .then((r)=>{
-                                        console.log(r.data)
+                                        console.log(r)
                                         const movies = r.data
                                         this.movies = movies.map((m)=>{
                                             // 데이터 못 가져오는 것들 처리
@@ -860,9 +863,11 @@
                     console.log(`${this.serverUrl}${signUpPath}`)
                     axios.post(`${this.serverUrl}${signUpPath}`, { "username":username,"email":email, "password1":password1, "password2":password2})
                         .then(res => {
+                            console.log(res)
                             if (res.status === 200) {
                                 // 성공적으로 회원가입이 되었을 경우
                                 console.log("회원가입성공")
+                                console.log(res)
                             }
                         })
                         .catch(e => {
@@ -872,5 +877,7 @@
             },
         })
     </script>
+
+
 </body>
 </html>
