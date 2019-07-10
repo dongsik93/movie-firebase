@@ -69,9 +69,9 @@
 <body>
 
     <div id="app">
-        <div v-if="!token">
+        <!-- <div v-if="!token"> -->
             <!-- 첫 화면  -->
-            <v-app id="inspire" style="font-family: 'Poor Story', cursive;">
+            <!-- <v-app id="inspire" style="font-family: 'Poor Story', cursive;">
                 <v-parallax dark src="http://t1.daumcdn.net/liveboard/h21/8c2be2ede24845dca9c4056cd5d70849.JPG" style="height:100%">
                     <h3 style="margin-left:15px; font-family: 'Pacifico', cursive;">Recommand Movie</h3>
                     <v-layout   justify-start >
@@ -161,10 +161,10 @@
                                                         <v-icon>fas fa-times</v-icon>
                                                     </v-btn>
 
-                                                </v-toolbar>
+                                                </v-toolbar> -->
 
                                                 <!-- signup -->
-                                                <v-form
+                                                <!-- <v-form
                                                     ref="form2"
                                                     v-model="form2"
                                                     class="pa-3 pt-4"
@@ -271,12 +271,12 @@
             </v-app>
         </div>
 
-        <div v-else>
+        <div v-else> -->
             <!-- list페이지  -->
-            <v-app style="font-family: 'Sunflower', sans-serif;">
+            <!-- <v-app style="font-family: 'Sunflower', sans-serif;"> -->
 
                     <!-- navbar -->
-                    <nav class="v-toolbar v-toolbar--clipped v-toolbar--fixed elevation-6" style="margin-top:0px;padding-right:0px;padding-left:0px;transform:translateY(0px);">
+                    <!-- <nav class="v-toolbar v-toolbar--clipped v-toolbar--fixed elevation-6" style="margin-top:0px;padding-right:0px;padding-left:0px;transform:translateY(0px);">
                         <div class="v-toolbar__content" flat style="height:58px">
                             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
                             <v-toolbar-title style="font-family: 'Sunflower', sans-serif;">일일 박스오피스 순위</v-toolbar-title>
@@ -285,16 +285,16 @@
                                 <v-btn flat @click="logout">logout</v-btn>
                             </v-toolbar-items>
                         </div>
-                    </nav>
+                    </nav> -->
 
                     <!-- 카드 -->
-                    <v-layout row wrap justify-space-around style="font-family: 'Poor Story', cursive; ">
+                    <!-- <v-layout row wrap justify-space-around style="font-family: 'Poor Story', cursive; ">
                         <v-flex class="move" xs12 sm6 md4 v-for="movie,i in movies" style="margin-bottom:350px;">
                             <div class="panel" >
                                     <div class="front card">
-                                        <template>
+                                        <template> -->
                                             <!-- <v-hover> -->
-                                                <v-card
+                                                <!-- <v-card
                                                 class="elevation-1"
                                                 width="344" style="margin-top:20px;">
                                                 <v-img :aspect-ratio="9/15" v-bind:src="movie.image_url"></v-img>
@@ -321,14 +321,14 @@
                                                         </div>
                                                         <v-spacer></v-spacer>
                                                     </v-card-title>
-                                                </v-card>
+                                                </v-card> -->
                                             <!-- </v-hover> -->
-                                        </template>
+                                        <!-- </template>
                                     </div>
-                                    <div class="back card">
+                                    <div class="back card"> -->
                                         <!-- <v-layout>
                                             <v-flex xs12 sm6 offset-sm3> -->
-                                                <v-card width="344" style="margin-top:20px;">
+                                                <!-- <v-card width="344" style="margin-top:20px;">
                                                     <v-img v-bind:src="movie.image_url" :aspect-ratio="9/16"></v-img>
                                                     <v-card-title primary-title>
                                                         <div>
@@ -373,9 +373,9 @@
                                                                                 </v-tab>
                                                                             </v-tabs>
                                                                         </template>
-                                                                    </v-toolbar>
+                                                                    </v-toolbar> -->
                                                                     <!-- 수정한 부분 -->
-                                                                    <v-tabs-items v-model="movie.currentItem" style="font-family: 'Poor Story', cursive; ">
+                                                                    <!-- <v-tabs-items v-model="movie.currentItem" style="font-family: 'Poor Story', cursive; ">
                                                                         <v-tab-item
                                                                         :key="items[0]"
                                                                         :value="'tab-'+items[0]"
@@ -565,9 +565,9 @@
                                                     </v-card-actions>
                                                     <v-slide-y-transition>
                                                             <v-card-text v-show="movie.show1">
-                                                                평점주기
+                                                                평점주기 -->
                                                                 <!-- <v-rating :value="movie.Participating/" color="amber" dense half-increments readonly size="14"></v-rating> -->
-                                                                <div class="text-xs-center mt-5">
+                                                                <!-- <div class="text-xs-center mt-5">
                                                                     <v-rating
                                                                         v-model="movie.newScore"
                                                                         color="yellow darken-3"
@@ -589,17 +589,17 @@
                                                     <v-slide-y-transition>
 
                                                     </v-slide-y-transition>
-                                                </v-card>
+                                                </v-card> -->
                                             <!-- </v-flex>
                                         </v-layout> -->
-                                    </div>
+                                    <!-- </div>
                             </div>
                     </v-flex>
                 </v-layout>
 
-                </v-container>
+                </v-container> -->
                 <!-- sidebar-->
-                <v-navigation-drawer v-model="drawer" absolute temporary>
+                <!-- <v-navigation-drawer v-model="drawer" absolute temporary>
                     <v-list class="pa-1">
                         <v-list-tile avatar>
                             <v-list-tile-avatar>
@@ -698,186 +698,185 @@
                             <v-list-tile-title>logout</v-list-tile-title>
                         </v-list-tile>
                     </v-list>
-                </v-navigation-drawer>
-            </v-app>
-        </div>
+                </v-navigation-drawer> -->
+            <!-- </v-app>
+        </div> -->
     </div>
 
 
 
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script>
-        const app = new Vue({
-            el:"#app",
-            data:()=>({
-                st1:false,
-                nd2:false,
-                rd3:false,
-                text:'여기에 이게 나옴?',
-                token:'',
-                signupStatus: false,
-                singupDialog: false,
-                dialog: false,
-                form1:false,
-                form2:false,
-                agreement: false,
-                signupUsername:'',
-                signupPassword:'',
-                signupEmail:'',
-                loginUsername:'',
-                loginPassword:'',
-                loginEmail:'',
-                // 배포용
-                serverUrl: "https://www.dongsik.tk",
-                // test용
-                // serverUrl: "http://out-project-dev.ap-northeast-2.elasticbeanstalk.com",
-                drawer: null,
-                rules:{
-                    // 회원가입 검증
-                    email: v => {
-                        const emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
-                        const result = (v || '').match(emailRegExp)
-                        if (result) {
-                            return true
-                        } else {
-                            return 'Please enter a valid email'
-                        }
-                    },
-                    length: (len) => {
-                        return (v => {
-                            if((v || '').length >= len){
-                                return true
-                            } else {
-                                return `Invalid character length, required ${len}`
-                            }
-                        })
-                    },
-                    password: v => {
-                        const passwordRegExp = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/
-                        const result = (v || '').match(passwordRegExp)
-                        if (result) {
-                            return true
-                        } else {
-                            return 'Password must contain an upper case letter, a numeric character, and a special character'
-                        }
-                    },
-                },
-                items: [
-                    "기본정보","상세정보","미리보기",
-                ],
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-                ,
-                movies:[
-                    {
-                    },
-                ],
-                siteIcons: [
-                    ['Best-sellers', 'far fa-thumbs-up'],
-                    ['New Movies', 'mdi-new-box'],
-                    ['Discounts', 'fas fa-dollar-sign'],
-                ],
-                cruds: [
-                    ['Create', 'add'],
-                    ['Read', 'insert_drive_file'],
-                    ['Update', 'update'],
-                    ['Delete', 'delete']
-                ],
-                hovers:[
-                    [413,4.5],
-                ],
-            }),
-            methods:{
-                logout () {
-                    const signUpPath = '/rest-auth/logout/'
-                    axios.get(`${this.serverUrl}${signUpPath}`)
-                        .then(res => {
-                            if (res.status === 200) {
-                                // 성공적으로 로그아웃이 될 경우
-                                location.href="file:///C:/Users/student/Desktop/project/project/index.html"
-                            }
-                        })
-                        .catch(e => {
-                            console.log(e)
-                    })
-                },
-                login () {
-                    const username = this.loginUsername;
-                    const password = this.loginPassword;
-                    const email = this.loginEmail;
-                    const loginPath = '/rest-auth/login/'
-                    if (!username || !password ||  !email) {
-                        return false;
-                    }
-                    axios.post(`${this.serverUrl}${loginPath}`, { "username":username,"email":email, "password":password})
-                        .then(res => {
-                            if (res.status === 200) {
-                                console.log(res)
-                                this.token = res.data.token
-                                console.log(this.token)
-                                const space = ' '
-                                // 성공적으로 로그인 되었을 경우
-                                // dataGet()
-                                axios.get(`${this.serverUrl}/api/v1/movies`,{'headers':{'Authorization':`JWT ${this.token}`}})
-                                    .then((r)=>{
-                                        console.log(r)
-                                        const movies = r.data
-                                        this.movies = movies.map((m)=>{
-                                            // 데이터 못 가져오는 것들 처리
-                                            const part = m.Participating * 1
-                                            const reple = eval(m.score_reples)
-                                            const genre = eval(m.genres)
-                                            const act_img = eval(m.actors_img)
-                                            const actor = eval(m.actors)
-                                            const actor_img = eval(m.actors_img)
-                                            const act_role = eval(m.actors_role)
-                                            const large_img = eval(m.large_image)
-                                            const score_reple_id = eval(m.score_reple_id)
-                                            const score_reple_like = eval(m.score_reple_like)
-                                            const currentItem = 'tab-기본정보'
-                                            return {...m, newScore:0,dialog:false,
-                                                        Participating:part,score_reples:reple,genres:genre,
-                                                        actors_img:act_img, actors_role:act_role,actors:actor,
-                                                        large_image:large_img,score_reple_id:score_reple_id, score_reple_like:score_reple_like,
-                                                        actors_img:actor_img, currentItem:currentItem,
-                                                        show1:false,show2:false}
-                                        })
-                                    })
-                                    .catch((e)=>{console.log(e)})
-                                        }
-                                    })
-                        .catch(e => {
-                            console.log(e)
-                    })
-                },
-                signup(){
-                    const username = this.signupUsername;
-                    const password1 = this.signupPassword;
-                    const password2 = this.signupPassword;
-                    const email = this.signupEmail;
-                    const signUpPath = '/rest-auth/registration/'
-                    if (!username || !password1 || !password2 || !email) {
-                        return false;
-                    }
-                    console.log(`${this.serverUrl}${signUpPath}`)
-                    axios.post(`${this.serverUrl}${signUpPath}`, { "username":username,"email":email, "password1":password1, "password2":password2})
-                        .then(res => {
-                            console.log(res)
-                            if (res.status === 200) {
-                                // 성공적으로 회원가입이 되었을 경우
-                                console.log("회원가입성공")
-                                console.log(res)
-                            }
-                        })
-                        .catch(e => {
-                            console.log(e)
-                    })
-                },
-            },
-        })
-    </script>
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 
 </body>
 </html>
+
+<script>
+    export default {
+        data:()=>({
+            st1:false,
+            nd2:false,
+            rd3:false,
+            text:'여기에 이게 나옴?',
+            // token:'',
+            // signupStatus: false,
+            // singupDialog: false,
+            // dialog: false,
+            // form1:false,
+            // form2:false,
+            agreement: false,
+            // signupUsername:'',
+            // signupPassword:'',
+            // signupEmail:'',
+            // loginUsername:'',
+            // loginPassword:'',
+            // loginEmail:'',
+            // 배포용
+            // serverUrl: "https://www.dongsik.tk",
+            // test용
+            // serverUrl: "http://127.0.0.1:8000",
+            // drawer: null,
+            // rules:{
+            //     // 회원가입 검증
+            //     email: v => {
+            //         const emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+            //         const result = (v || '').match(emailRegExp)
+            //         if (result) {
+            //             return true
+            //         } else {
+            //             return 'Please enter a valid email'
+            //         }
+            //     },
+            //     length: (len) => {
+            //         return (v => {
+            //             if((v || '').length >= len){
+            //                 return true
+            //             } else {
+            //                 return `Invalid character length, required ${len}`
+            //             }
+            //         })
+            //     },
+            //     password: v => {
+            //         const passwordRegExp = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/
+            //         const result = (v || '').match(passwordRegExp)
+            //         if (result) {
+            //             return true
+            //         } else {
+            //             return 'Password must contain an upper case letter, a numeric character, and a special character'
+            //         }
+            //     },
+            // },
+            // items: [
+            //     "기본정보","상세정보","미리보기",
+            // ],
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+            ,
+            movies:[
+                {
+                },
+            ],
+            // siteIcons: [
+            //     ['Best-sellers', 'far fa-thumbs-up'],
+            //     ['New Movies', 'mdi-new-box'],
+            //     ['Discounts', 'fas fa-dollar-sign'],
+            // ],
+            // cruds: [
+            //     ['Create', 'add'],
+            //     ['Read', 'insert_drive_file'],
+            //     ['Update', 'update'],
+            //     ['Delete', 'delete']
+            // ],
+            hovers:[
+                [413,4.5],
+            ],
+        }),
+        methods:{
+            // logout () {
+            //     const signUpPath = '/rest-auth/logout/'
+            //     axios.get(`${this.serverUrl}${signUpPath}`)
+            //         .then(res => {
+            //             if (res.status === 200) {
+            //                 // 성공적으로 로그아웃이 될 경우
+            //                 location.href="file:///C:/Users/student/Desktop/project/project/index.html"
+            //             }
+            //         })
+            //         .catch(e => {
+            //             console.log(e)
+            //     })
+            // },
+            // login () {
+            //     const username = this.loginUsername;
+            //     const password = this.loginPassword;
+            //     const email = this.loginEmail;
+            //     const loginPath = '/rest-auth/login/'
+            //     if (!username || !password ||  !email) {
+            //         return false;
+            //     }
+            //     axios.post(`${this.serverUrl}${loginPath}`, { "username":username,"email":email, "password":password})
+            //         .then(res => {
+            //             if (res.status === 200) {
+            //                 console.log(res)
+            //                 this.token = res.data.token
+            //                 console.log(this.token)
+            //                 const space = ' '
+            //                 // 성공적으로 로그인 되었을 경우
+            //                 // dataGet()
+            //                 axios.get(`${this.serverUrl}/api/v1/movies`,{'headers':{'Authorization':`JWT ${this.token}`}})
+            //                     .then((r)=>{
+            //                         console.log(r)
+            //                         const movies = r.data
+            //                         this.movies = movies.map((m)=>{
+            //                             // 데이터 못 가져오는 것들 처리
+            //                             const part = m.Participating * 1
+            //                             const reple = eval(m.score_reples)
+            //                             const genre = eval(m.genres)
+            //                             const act_img = eval(m.actors_img)
+            //                             const actor = eval(m.actors)
+            //                             const actor_img = eval(m.actors_img)
+            //                             const act_role = eval(m.actors_role)
+            //                             const large_img = eval(m.large_image)
+            //                             const score_reple_id = eval(m.score_reple_id)
+            //                             const score_reple_like = eval(m.score_reple_like)
+            //                             const currentItem = 'tab-기본정보'
+            //                             return {...m, newScore:0,dialog:false,
+            //                                         Participating:part,score_reples:reple,genres:genre,
+            //                                         actors_img:act_img, actors_role:act_role,actors:actor,
+            //                                         large_image:large_img,score_reple_id:score_reple_id, score_reple_like:score_reple_like,
+            //                                         actors_img:actor_img, currentItem:currentItem,
+            //                                         show1:false,show2:false}
+            //                         })
+            //                     })
+            //                     .catch((e)=>{console.log(e)})
+            //                         }
+            //                     })
+            //         .catch(e => {
+            //             console.log(e)
+            //     })
+            // },
+            // signup(){
+            //     const username = this.signupUsername;
+            //     const password1 = this.signupPassword;
+            //     const password2 = this.signupPassword;
+            //     const email = this.signupEmail;
+            //     const signUpPath = '/rest-auth/registration/'
+            //     if (!username || !password1 || !password2 || !email) {
+            //         return false;
+            //     }
+            //     console.log(`${this.serverUrl}${signUpPath}`)
+            //     axios.post(`${this.serverUrl}${signUpPath}`, { "username":username,"email":email, "password1":password1, "password2":password2})
+            //         .then(res => {
+            //             console.log(res)
+            //             if (res.status === 200) {
+            //                 // 성공적으로 회원가입이 되었을 경우
+            //                 console.log("회원가입성공")
+            //                 console.log(res)
+            //             }
+            //         })
+            //         .catch(e => {
+            //             console.log(e)
+            //     })
+            // },
+        },
+    }
+</script>
