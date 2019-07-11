@@ -313,10 +313,10 @@
 
 <script>
   export default {
-    data () {
+    data: ()=>({
       items: [
           "기본정보","상세정보","미리보기",
       ],
-    },
+    }),
   }
 </script>

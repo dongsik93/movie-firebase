@@ -12,7 +12,7 @@
                             <h1 class="mb-3" style="font-family: 'Poor Story', cursive; font-size:50px;">영화 평점 사이트</h1>
                         </v-flex>
                         <v-flex>
-                            <h3>Watch movie & Recommand  !</h4>
+                            <h3>Watch movie & Recommand  !</h3>
                         </v-flex>
                         <v-flex style="margin-top:25px;">
                             <v-dialog v-model="dialog" width="500">
@@ -75,7 +75,7 @@
                                     </v-card-actions>
                                 </v-card>
                             </v-dialog>
-                            <Signup></Signup>
+                            <SignUp></SignUp>
                           </v-flex>
                     </v-container>
             </v-layout>
@@ -89,11 +89,12 @@
 
 <script>
 import SignUp from '../components/SignUp'
-
+import LoginService from '@/service/LoginService'
+import GetData from '@/service/GetData'
 
 export default {
   name: 'LoginPage',
-  data () {
+  data: () =>({
     dialog : false,
     form1 : false,
     loginUsername :'',
@@ -104,64 +105,57 @@ export default {
         {
         },
     ],
-  },
+  }),
   components: {
     SignUp,
   },
-  mounted (){
-    this.login()
-  },
   methods :{
     login () {
+        console.log("여기 111")
         const username = this.loginUsername;
         const password = this.loginPassword;
         const email = this.loginEmail;
-        const loginPath = '/rest-auth/login/'
         if (!username || !password ||  !email) {
             return false;
         }
-        axios.post(`${this.serverUrl}${loginPath}`, { "username":username,"email":email, "password":password})
-            .then(res => {
-                if (res.status === 200) {
-                    console.log(res)
-                    this.token = res.data.token
-                    console.log(this.token)
-                    const space = ' '
-                    // 성공적으로 로그인 되었을 경우
-                    // dataGet()
-                    axios.get(`${this.serverUrl}/api/v1/movies`,{'headers':{'Authorization':`JWT ${this.token}`}})
-                        .then((r)=>{
-                            console.log(r)
-                            const movies = r.data
-                            this.movies = movies.map((m)=>{
-                                // 데이터 못 가져오는 것들 처리
-                                const part = m.Participating * 1
-                                const reple = eval(m.score_reples)
-                                const genre = eval(m.genres)
-                                const act_img = eval(m.actors_img)
-                                const actor = eval(m.actors)
-                                const actor_img = eval(m.actors_img)
-                                const act_role = eval(m.actors_role)
-                                const large_img = eval(m.large_image)
-                                const score_reple_id = eval(m.score_reple_id)
-                                const score_reple_like = eval(m.score_reple_like)
-                                const currentItem = 'tab-기본정보'
-                                return {...m, newScore:0,dialog:false,
-                                            Participating:part,score_reples:reple,genres:genre,
-                                            actors_img:act_img, actors_role:act_role,actors:actor,
-                                            large_image:large_img,score_reple_id:score_reple_id, score_reple_like:score_reple_like,
-                                            actors_img:actor_img, currentItem:currentItem,
-                                            show1:false,show2:false}
-                            })
-                        })
-                        .catch((e)=>{console.log(e)})
-                            }
-                        })
-            .catch(e => {
-                console.log(e)
-        })
-    },
-  },
-}
+        const res =  LoginService.PageLogin(username, password, email)
+        console.log(res)
+        res.then((res) => {
+            console.log('확인!')
+            console.log(res.data.token)
+          })
+          .catch(() => {
+            
+          })
+        if (res.status === 200) {
+              console.log("여기2222")
+
+              this.token = res.data.token
+              const r = GetData.getData(this.token)
+              const movies = r.data
+              this.movies = movies.map((m)=>{
+                  // 데이터 못 가져오는 것들 처리
+                  const part = m.Participating * 1
+                  const reple = eval(m.score_reples)
+                  const genre = eval(m.genres)
+                  const act_img = eval(m.actors_img)
+                  const actor = eval(m.actors)
+                  const actor_img = eval(m.actors_img)
+                  const act_role = eval(m.actors_role)
+                  const large_img = eval(m.large_image)
+                  const score_reple_id = eval(m.score_reple_id)
+                  const score_reple_like = eval(m.score_reple_like)
+                  const currentItem = 'tab-기본정보'
+                  return {...m, newScore:0,dialog:false,
+                              Participating:part,score_reples:reple,genres:genre,
+                              actors_img:act_img, actors_role:act_role,actors:actor,
+                              large_image:large_img,score_reple_id:score_reple_id, score_reple_like:score_reple_like,
+                              actors_img:actor_img, currentItem:currentItem,
+                              show1:false,show2:false}
+              })
+            }
+          },
+        },
+       }
 
 </script>

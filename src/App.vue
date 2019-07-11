@@ -1,25 +1,19 @@
 <template>
   <v-app>
     <v-content>
-      <MyHeader></MyHeader>
-      <MySidebar></MySidebar>
       <router-view/>
     </v-content>
   </v-app>
 </template>
 
 <script>
+import store from './store'
 
-import MyHeader from './components/MyHeader.vue'
-import MySidebar from './components/MySidebar.vue'
 
 
 export default {
   name: 'App',
-  components: {
-    MyHeader,
-    MySidebar,
-  },
+  store,
   data() {
       return {
         // 배포용

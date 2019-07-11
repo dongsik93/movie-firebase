@@ -17,7 +17,7 @@
 export default {
 	name: 'MyHeader',
   data: () => ({
-    drawer = null,
+    drawer : null,
   }),
   mounted() {
     this.logout()

@@ -108,7 +108,7 @@ export default {
 	name: 'MySidebar',
 	components: {
 	},
-  data () {
+  data : () => ({
     drawer : null,
     siteIcons: [
         ['Best-sellers', 'far fa-thumbs-up'],
@@ -121,8 +121,6 @@ export default {
         ['Update', 'update'],
         ['Delete', 'delete']
     ],
-  }
-	methods: {
-	},
+  }),
 }
 </script>

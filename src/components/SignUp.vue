@@ -13,10 +13,7 @@
                 <v-btn icon v-model="singupDialog" @click="singupDialog = false">
                     <v-icon>fas fa-times</v-icon>
                 </v-btn>
-
             </v-toolbar>
-
-            <!-- signup -->
             <v-form
                 ref="form2"
                 v-model="form2"
@@ -66,8 +63,7 @@
                 <v-dialog v-model="signupStatus">
                     <template v-slot:activator="{ on }">
                         <v-btn :disabled="!form2" class="white--text" color="deep-purple" depressed
-                        @click="[signup(), signupStatus=true]" v-on="on"
-                        >Submit</v-btn>
+                        @click="[Signup(), signupStatus=true]" v-on="on">Submit</v-btn>
                     </template>
                     <v-card v-if="signupStatus">
                         <v-card-title
@@ -121,9 +117,11 @@
 </template>
 
 <script>
+import SignUpService from '@/service/SignUpService'
+
 export default {
   name : 'SignUp',
-  data () {
+  data : () => ({
     signupStatus: false,
     singupDialog: false,
     form2:false,
@@ -160,33 +158,18 @@ export default {
             }
         },
     },
-  },
-  mounted (){
-    this.singup()
-  },
-  method:{
-    signup(){
-        const username = this.signupUsername;
-        const password1 = this.signupPassword;
-        const password2 = this.signupPassword;
-        const email = this.signupEmail;
-        const signUpPath = '/rest-auth/registration/'
-        if (!username || !password1 || !password2 || !email) {
-            return false;
+  }),
+  methods:{
+    Signup() {
+        const username = this.signupUsername
+        const password = this.signupPassword
+        const email = this.signupEmail
+        const response =  SignUpService.PageSignup(username, password, password, email)
+        console.log(response)
+        if(response.data !== 200){
+          return
         }
-        console.log(`${this.serverUrl}${signUpPath}`)
-        axios.post(`${this.serverUrl}${signUpPath}`, { "username":username,"email":email, "password1":password1, "password2":password2})
-            .then(res => {
-                console.log(res)
-                if (res.status === 200) {
-                    // 성공적으로 회원가입이 되었을 경우
-                    console.log("회원가입성공")
-                    console.log(res)
-                }
-            })
-            .catch(e => {
-                console.log(e)
-        })
+
     },
   }
 }
