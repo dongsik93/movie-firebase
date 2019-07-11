@@ -148,9 +148,9 @@
                                                                           <v-layout row>
                                                                               <v-flex grow pa-1>
                                                                                   <v-card-text>
-                                                                                      <h2 style="font-size:25px">감독</h3>
+                                                                                      <h2 style="font-size:25px">감독</h2>
                                                                                       <p>{{movie.actors[0]}}</p>
-                                                                                      <h2 style="font-size:25px">배우</h3>
+                                                                                      <h2 style="font-size:25px">배우</h2>
                                                                                       <v-list-tile avatar>
                                                                                           <v-list-tile-avatar>
                                                                                                   <img v-bind:src="movie.actors_img[1]">
@@ -319,4 +319,6 @@
       ],
     }),
   }
+
+
 </script>

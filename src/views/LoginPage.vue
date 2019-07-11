@@ -91,15 +91,16 @@
 import SignUp from '../components/SignUp'
 import LoginService from '@/service/LoginService'
 import GetData from '@/service/GetData'
+import { EventBus } from '../utils/event-bus'
 
 export default {
   name: 'LoginPage',
   data: () =>({
     dialog : false,
     form1 : false,
-    loginUsername :'',
-    loginPassword :'',
-    loginEmail  :'',
+    loginUsername :'data',
+    loginPassword :'1',
+    loginEmail  :'data@naver.com',
     token :'',
     movies:[
         {
@@ -119,43 +120,17 @@ export default {
             return false;
         }
         const res =  LoginService.PageLogin(username, password, email)
-        console.log(res)
         res.then((res) => {
-            console.log('확인!')
-            console.log(res.data.token)
-          })
-          .catch(() => {
-            
-          })
-        if (res.status === 200) {
-              console.log("여기2222")
-
-              this.token = res.data.token
-              const r = GetData.getData(this.token)
-              const movies = r.data
-              this.movies = movies.map((m)=>{
-                  // 데이터 못 가져오는 것들 처리
-                  const part = m.Participating * 1
-                  const reple = eval(m.score_reples)
-                  const genre = eval(m.genres)
-                  const act_img = eval(m.actors_img)
-                  const actor = eval(m.actors)
-                  const actor_img = eval(m.actors_img)
-                  const act_role = eval(m.actors_role)
-                  const large_img = eval(m.large_image)
-                  const score_reple_id = eval(m.score_reple_id)
-                  const score_reple_like = eval(m.score_reple_like)
-                  const currentItem = 'tab-기본정보'
-                  return {...m, newScore:0,dialog:false,
-                              Participating:part,score_reples:reple,genres:genre,
-                              actors_img:act_img, actors_role:act_role,actors:actor,
-                              large_image:large_img,score_reple_id:score_reple_id, score_reple_like:score_reple_like,
-                              actors_img:actor_img, currentItem:currentItem,
-                              show1:false,show2:false}
-              })
-            }
-          },
-        },
-       }
-
+            if (res.status === 200) {
+                  this.token = res.data.token
+                  console.log(this.token)
+                }
+        })
+        EventBus.$emit("use-eventbus", this.token)
+        this.$router.push({
+          name:'Home',
+        })
+      },
+    }
+  }
 </script>

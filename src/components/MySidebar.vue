@@ -8,7 +8,7 @@
                 </v-list-tile-avatar>
 
                 <v-list-tile-content>
-                    <v-list-tile-title style="font-size:20px;">{{loginUsername}}님</v-list-tile-title>
+                    <v-list-tile-title style="font-size:20px;">동식님</v-list-tile-title>
                 </v-list-tile-content>
             </v-list-tile>
         </v-list>
@@ -109,7 +109,7 @@ export default {
 	components: {
 	},
   data : () => ({
-    drawer : null,
+    drawer : false,
     siteIcons: [
         ['Best-sellers', 'far fa-thumbs-up'],
         ['New Movies', 'mdi-new-box'],

@@ -9,5 +9,5 @@ export default {
   getData(token){
     var getDataPath = '/api/v1/movies'
     return axios.get(`${BASE_URL}${getDataPath}`, {'headers':{'Authorization':`JWT ${token}`}})
-  }
+  },
 }
