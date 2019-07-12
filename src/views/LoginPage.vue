@@ -69,7 +69,7 @@
 
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
-                                        <v-btn color="deep-purple" class="white--text" :disabled="!form1" depressed  @click="login">
+                                        <v-btn color="deep-purple" class="white--text" :disabled="!form1" depressed  @click="[login(),sender()]">
                                             submit
                                         </v-btn>
                                     </v-card-actions>
@@ -82,8 +82,6 @@
         </v-parallax>
     </v-app>
     </div>
-
-
   </div>
 </template>
 
@@ -91,7 +89,7 @@
 import SignUp from '../components/SignUp'
 import LoginService from '@/service/LoginService'
 import GetData from '@/service/GetData'
-import { EventBus } from '../utils/event-bus'
+import EventBus from '../utils/event-bus'
 
 export default {
   name: 'LoginPage',
@@ -102,6 +100,7 @@ export default {
     loginPassword :'1',
     loginEmail  :'data@naver.com',
     token :'',
+    receiveToken:'',
     movies:[
         {
         },
@@ -110,7 +109,17 @@ export default {
   components: {
     SignUp,
   },
+  created(){
+    EventBus.$on('message', this.onReceive)
+  },
   methods :{
+    sender() {
+            EventBus.$emit('message', this.token);
+            this.token = '';
+    },
+    onReceive(token) {
+        this.receiveToken = token;
+    },
     login () {
         console.log("여기 111")
         const username = this.loginUsername;
@@ -124,12 +133,13 @@ export default {
             if (res.status === 200) {
                   this.token = res.data.token
                   console.log(this.token)
-                }
+                  this.$router.push({
+                    name:'Home',
+
+                })
+              }
         })
-        EventBus.$emit("use-eventbus", this.token)
-        this.$router.push({
-          name:'Home',
-        })
+
       },
     }
   }
