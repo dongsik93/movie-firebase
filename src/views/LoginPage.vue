@@ -69,7 +69,7 @@
 
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
-                                        <v-btn color="deep-purple" class="white--text" :disabled="!form1" depressed  @click="[login(),sender()]">
+                                        <v-btn color="deep-purple" class="white--text" :disabled="!form1" depressed  @click="login">
                                             submit
                                         </v-btn>
                                     </v-card-actions>
@@ -88,8 +88,6 @@
 <script>
 import SignUp from '../components/SignUp'
 import LoginService from '@/service/LoginService'
-import GetData from '@/service/GetData'
-import EventBus from '../utils/event-bus'
 
 export default {
   name: 'LoginPage',
@@ -109,17 +107,8 @@ export default {
   components: {
     SignUp,
   },
-  created(){
-    EventBus.$on('message', this.onReceive)
-  },
   methods :{
-    sender() {
-            EventBus.$emit('message', this.token);
-            this.token = '';
-    },
-    onReceive(token) {
-        this.receiveToken = token;
-    },
+
     login () {
         console.log("여기 111")
         const username = this.loginUsername;

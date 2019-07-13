@@ -12,6 +12,7 @@ import store from './store'
 import './registerServiceWorker'
 import axios from 'axios'
 
+const EventBus = new Vue()
 Vue.config.productionTip = false
 
 Vue.use(Vuetify, {
