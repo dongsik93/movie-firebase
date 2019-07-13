@@ -1,8 +1,8 @@
 <template>
 <v-container>
-  <nav info class="v-toolbar v-toolbar--clipped v-toolbar--fixed" style="margin-top:0px;padding-right:0px;padding-left:0px;z-index:2;">
+  <nav info class="v-toolbar v-toolbar--clipped v-toolbar--fixed pink-4  pink lighten-5" style="margin-top:0px;padding-right:0px;padding-left:0px;z-index:2;">
       <div class="v-toolbar__content" flat style="height:58px">
-          <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+          <v-toolbar-side-icon @click.stop="[drawer = !drawer, getUsername()]"></v-toolbar-side-icon>
           <v-toolbar-title style="font-family: 'Sunflower', sans-serif;">일일 박스오피스 순위</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
@@ -10,7 +10,7 @@
           </v-toolbar-items>
       </div>
   </nav>
-  <v-navigation-drawer v-model="drawer" absolute temporary>
+  <v-navigation-drawer v-model="drawer" absolute temporary style="position:fixed;">
       <v-list class="pa-1">
           <v-list-tile avatar>
               <v-list-tile-avatar>
@@ -18,7 +18,7 @@
               </v-list-tile-avatar>
 
               <v-list-tile-content>
-                  <v-list-tile-title style="font-size:20px;">동식님</v-list-tile-title>
+                  <v-list-tile-title style="font-size:20px;">{{username}}</v-list-tile-title>
               </v-list-tile-content>
           </v-list-tile>
       </v-list>
@@ -116,9 +116,12 @@
 <script>
 import MySidebar from '../components/MySidebar'
 import LogoutService from '@/service/LogoutService'
+import store from '../store'
+
 
 export default {
 	name: 'MyHeader',
+  store,
   components:{
     MySidebar
   },
@@ -139,10 +142,13 @@ export default {
       {
       }
     ],
-    token : ''
+    username:'',
   }),
 
   methods: {
+    getUsername(){
+      this.username = store.state.user
+    },
     logout () {
         const res =  LogoutService.PageLogout()
         res.then((res) => {

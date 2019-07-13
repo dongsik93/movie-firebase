@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app id="inspire" style="font-family: 'Poor Story', cursive;">
-        <v-parallax dark src="http://t1.daumcdn.net/liveboard/h21/8c2be2ede24845dca9c4056cd5d70849.JPG" style="height:100%">
+        <v-parallax dark src="https://img1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/liveboard/h21/8c2be2ede24845dca9c4056cd5d70849.JPG" style="height:100%">
             <h3 style="margin-left:15px; font-family: 'Pacifico', cursive;">Recommand Movie</h3>
             <v-layout   justify-start >
                 <v-container style="margin-left:0px;">
@@ -124,6 +124,7 @@ export default {
             if (res.status === 200) {
                   this.token = res.data.token
                   store.state.accessToken = this.token
+                  store.state.user = this.username
                   this.$router.push({
                     name:'Home',
 
