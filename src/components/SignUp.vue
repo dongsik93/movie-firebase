@@ -1,5 +1,4 @@
 <template>
-  <v-container>
     <v-dialog v-model="singupDialog">
         <template v-slot:activator="{ on }">
             <v-btn color="grey lighten-2" v-on="on">
@@ -113,7 +112,6 @@
             </v-card-actions>
         </v-card>
     </v-dialog>
-  </v-container>
 </template>
 
 <script>
@@ -166,9 +164,14 @@ export default {
         const email = this.signupEmail
         const response =  SignUpService.PageSignup(username, password, password, email)
         console.log(response)
-        if(response.data !== 200){
+        response.then((res) => {
           return
-        }
+          }
+        )
+        .catch((e)=>{
+          return
+        })
+
 
     },
   }

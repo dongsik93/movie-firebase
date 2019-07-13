@@ -11,7 +11,7 @@
                                   <v-card
                                   class="elevation-1"
                                   width="344" style="margin-top:20px;">
-                                  <v-img :aspect-ratio="9/15" v-bind:src="movie.image_url"></v-img>
+                                  <v-img :aspect-ratio="12/15" v-bind:src="movie.image_url"></v-img>
                                       <v-card-title>
                                           <div>
                                               <span style="font-size:30px">{{movie.movieNm}}</span>
