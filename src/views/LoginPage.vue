@@ -88,9 +88,11 @@
 <script>
 import SignUp from '../components/SignUp'
 import LoginService from '@/service/LoginService'
+import store from '../store'
 
 export default {
   name: 'LoginPage',
+  store,
   data: () =>({
     dialog : false,
     form1 : false,
@@ -121,7 +123,7 @@ export default {
         res.then((res) => {
             if (res.status === 200) {
                   this.token = res.data.token
-                  console.log(this.token)
+                  store.state.accessToken = this.token
                   this.$router.push({
                     name:'Home',
 

@@ -2,9 +2,8 @@
   <div>
     <v-container>
       <MyHeader></MyHeader>
-      <MySidebar></MySidebar>
-      <v-layout row wrap justify-space-around style="font-family: 'Poor Story', cursive; ">
-          <v-flex xs12 sm6 md4 v-for="movie,i in movies" style="margin-bottom:350px;">
+      <v-layout row wrap mw-700 style="font-family: 'Poor Story', cursive; ">
+          <v-flex v-for="movie,i in movies" style="margin-bottom:350px; margin-right:150px">
               <div class="panel" >
                       <div class="front card">
                           <template>
@@ -57,11 +56,11 @@
                                       <v-card-actions>
                                           <v-btn flat color="orange">평점주기</v-btn>
                                           <v-btn icon @click="movie.show1 = !movie.show1">
-                                              <v-icon>{{ movie.show1 ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
+                                              <v-icon>{{ movie.show1 ? 'fas fa-arrow-up' : 'fas fa-arrow-down' }}</v-icon>
                                           </v-btn>
                                           <v-btn flat color="orange">글남기기</v-btn>
                                           <v-btn icon @click="movie.show2 = !movie.show2">
-                                              <v-icon>{{ movie.show2 ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
+                                              <v-icon>{{ movie.show2 ? 'fas fa-arrow-up' : 'fas fa-arrow-down' }}</v-icon>
                                           </v-btn>
                                           <v-dialog v-model="movie.dialog" full-width>
                                               <template v-slot:activator="{ on }">
@@ -90,7 +89,7 @@
                                                           </template>
                                                       </v-toolbar>
                                                       <!-- 수정한 부분 -->
-                                                      <v-tabs-items v-model="movie.currentItem" style="font-family: 'Poor Story', cursive; ">
+                                                      <v-tabs-items fixed-tabs v-model="movie.currentItem" style="font-family: 'Poor Story', cursive; ">
                                                           <v-tab-item
                                                           :key="items[0]"
                                                           :value="'tab-'+items[0]"
@@ -105,7 +104,7 @@
                                                                                   </v-btn>
                                                                                   <div style="background-color:#00000047; font-size:20px;">
                                                                                       <v-card-text >
-                                                                                          <h1 style="font-size:50px;">{{ movie.movieNm }}</h1>
+                                                                                          <span style="font-size:50px;">{{ movie.movieNm }}</span>
                                                                                           <v-btn color="error">평균평점 : {{movie.Participating}}</v-btn>
                                                                                           {{movie.watchGradeNm}} | {{movie.showTm}}분
                                                                                       </v-card-text>
@@ -317,17 +316,18 @@
 
 <script>
 import MyHeader from '../components/MyHeader'
-import MySidebar from '../components/MySidebar'
 import LoginService from '@/service/LoginService'
 import GetData from '@/service/GetData'
+import store from '../store'
 
 export default {
   name: 'HomePage',
+  store,
   components: {
     MyHeader,
-    MySidebar,
   },
   data: () => ({
+      token:'',
       items: [
           "기본정보","상세정보","미리보기",
       ],
@@ -339,52 +339,45 @@ export default {
       ],
   }),
   created(){
+    this.getToken()
     this.dataSet()
   },
   watch:{
+    '$route' : 'getToken',
     '$route' : 'dataSet'
   },
   methods : {
-    dataSet (){
-      const username = 'data';
-      const password = 1;
-      const email = 'data@naver.com';
-      if (!username || !password ||  !email) {
-          return false;
+    getToken(){
+      if(store.state.accessToken){
+        this.token = store.state.accessToken
       }
-      const res =  LoginService.PageLogin(username, password, email)
-      res.then((res) => {
-          if (res.status === 200) {
-                this.token = res.data.token
-                const data = GetData.getData(this.token)
-                data.then( (r) => {
-                  const mas = r.data
-                  console.log(mas)
-                  this.movies = mas.map(function(m){
-                      // 데이터 못 가져오는 것들 처리
-                      const part = m.Participating * 1
-                      const reple = eval(m.score_reples)
-                      const genre = eval(m.genres)
-                      const act_img = eval(m.actors_img)
-                      const actor = eval(m.actors)
-                      const actor_img = eval(m.actors_img)
-                      const act_role = eval(m.actors_role)
-                      const large_img = eval(m.large_image)
-                      const score_reple_id = eval(m.score_reple_id)
-                      const score_reple_like = eval(m.score_reple_like)
-                      const currentItem = 'tab-기본정보'
-                      return {...m, newScore:0,dialog:false,
-                                  Participating:part,score_reples:reple,genres:genre,
-                                  actors_img:act_img, actors_role:act_role,actors:actor,
-                                  large_image:large_img,score_reple_id:score_reple_id, score_reple_like:score_reple_like,
-                                  actors_img:actor_img, currentItem:currentItem,
-                                  show1:false,show2:false}
-                  })
-                })
-            }
-      })
+    },
+    dataSet (){
+        const data = GetData.getData(this.token)
+        data.then( (r) => {
+          const mas = r.data
+          this.movies = mas.map(function(m){
+              const part = m.Participating * 1
+              const reple = eval(m.score_reples)
+              const genre = eval(m.genres)
+              const act_img = eval(m.actors_img)
+              const actor = eval(m.actors)
+              const actor_img = eval(m.actors_img)
+              const act_role = eval(m.actors_role)
+              const large_img = eval(m.large_image)
+              const score_reple_id = eval(m.score_reple_id)
+              const score_reple_like = eval(m.score_reple_like)
+              const currentItem = 'tab-기본정보'
+              return {...m, newScore:0,dialog:false,
+                          Participating:part,score_reples:reple,genres:genre,
+                          actors_img:act_img, actors_role:act_role,actors:actor,
+                          large_image:large_img,score_reple_id:score_reple_id, score_reple_like:score_reple_like,
+                          actors_img:actor_img, currentItem:currentItem,
+                          show1:false,show2:false}
+          })
+        })
+      }
     }
   }
-}
 
 </script>

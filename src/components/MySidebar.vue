@@ -109,7 +109,7 @@ export default {
 	components: {
 	},
   data : () => ({
-    drawer : false,
+    drawer : null,
     siteIcons: [
         ['Best-sellers', 'far fa-thumbs-up'],
         ['New Movies', 'mdi-new-box'],
