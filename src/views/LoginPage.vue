@@ -89,6 +89,7 @@
 import SignUp from '../components/SignUp'
 import LoginService from '@/service/LoginService'
 import store from '../store'
+import GetData from '@/service/GetData'
 
 export default {
   name: 'LoginPage',
@@ -100,11 +101,8 @@ export default {
     loginPassword :'1',
     loginEmail  :'data@naver.com',
     token :'',
-    receiveToken:'',
-    movies:[
-        {
-        },
-    ],
+    movies:[{}],
+    totalMovies:[{}],
   }),
   components: {
     SignUp,
@@ -125,9 +123,58 @@ export default {
                   this.token = res.data.token
                   store.state.accessToken = this.token
                   store.state.user = this.username
+                  const data = GetData.getData(this.token)
+                  data.then( (r) => {
+                    const mas = r.data
+                    this.movies = mas.map(function(m){
+                        const part = m.Participating * 1
+                        const reple = eval(m.score_reples)
+                        const genre = eval(m.genres)
+                        const act_img = eval(m.actors_img)
+                        const actor = eval(m.actors)
+                        const actor_img = eval(m.actors_img)
+                        const act_role = eval(m.actors_role)
+                        const large_img = eval(m.large_image)
+                        const score_reple_id = eval(m.score_reple_id)
+                        const score_reple_like = eval(m.score_reple_like)
+                        const currentItem = 'tab-기본정보'
+                        return {...m, newScore:0,dialog:false,
+                                    Participating:part,score_reples:reple,genres:genre,
+                                    actors_img:act_img, actors_role:act_role,actors:actor,
+                                    large_image:large_img,score_reple_id:score_reple_id, score_reple_like:score_reple_like,
+                                    actors_img:actor_img, currentItem:currentItem,
+                                    show1:false,show2:false}
+                    })
+                    store.state.movies = this.movies
+                  })
+
+                  const data2 = GetData.getTotalData(this.token)
+                  data2.then( (r) => {
+                    this.length = r.data.length
+                    const mas = r.data
+                    this.totalMovies = mas.map(function(m){
+                        const part = m.Participating * 1
+                        const reple = eval(m.score_reples)
+                        const genre = eval(m.genres)
+                        const act_img = eval(m.actors_img)
+                        const actor = eval(m.actors)
+                        const actor_img = eval(m.actors_img)
+                        const act_role = eval(m.actors_role)
+                        const large_img = eval(m.large_image)
+                        const score_reple_id = eval(m.score_reple_id)
+                        const score_reple_like = eval(m.score_reple_like)
+                        const currentItem = 'tab-기본정보'
+                        return {...m, newScore:0,dialog:false,
+                                    Participating:part,score_reples:reple,genres:genre,
+                                    actors_img:act_img, actors_role:act_role,actors:actor,
+                                    large_image:large_img,score_reple_id:score_reple_id, score_reple_like:score_reple_like,
+                                    actors_img:actor_img, currentItem:currentItem,
+                                    show1:false,show2:false}
+                    })
+                    store.state.totalMovies = this.totalMovies
+                  })
                   this.$router.push({
                     name:'Home',
-
                 })
               }
         })

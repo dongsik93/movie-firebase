@@ -1,9 +1,8 @@
 import axios from 'axios'
+import store from '../store'
 
-// 실제
-const BASE_URL = 'https://www.dongsik.tk'
-// 예상
-// const BASE_URL = "http://127.0.0.1:8000"
+const BASE_URL = store.state.Base_URL
+
 
 export default {
   PageLogout(){

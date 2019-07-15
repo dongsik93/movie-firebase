@@ -1,11 +1,16 @@
 <template>
 <v-container>
-  <nav info class="v-toolbar v-toolbar--clipped v-toolbar--fixed pink-4  pink lighten-5" style="margin-top:0px;padding-right:0px;padding-left:0px;z-index:2;">
+  <nav info class="v-toolbar v-toolbar--clipped v-toolbar--fixed  pink lighten-5" style="margin-top:0px;padding-right:0px;padding-left:0px;z-index:2;">
       <div class="v-toolbar__content" flat style="height:58px">
           <v-toolbar-side-icon @click.stop="[drawer = !drawer, getUsername()]"></v-toolbar-side-icon>
-          <v-toolbar-title style="font-family: 'Sunflower', sans-serif;">일일 박스오피스 순위</v-toolbar-title>
+          <v-toolbar-title style="font-family: 'Sunflower', sans-serif;">
+            일일 박스오피스 순위
+          </v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
+              <v-btn flat><router-link to="/home" class="Linkstyle">Home</router-link></v-btn>
+              <v-btn flat><router-link to="/day" class="Linkstyle">Day</router-link></v-btn>
+              <v-btn flat><router-link to="/total" class="Linkstyle">Total</router-link></v-btn>
               <v-btn flat @click="logout">logout</v-btn>
           </v-toolbar-items>
       </div>
@@ -127,6 +132,7 @@ export default {
   },
   data: () => ({
     drawer : null,
+    navName:['홈화면','일일 박스오피스 순위','모든 영화'],
     siteIcons: [
         ['Best-sellers', 'far fa-thumbs-up'],
         ['New Movies', 'mdi-new-box'],
@@ -163,3 +169,11 @@ export default {
     }
 
 </script>
+
+<style>
+.Linkstyle {
+  color:black;
+  text-decoration: none;
+}
+
+</style>
